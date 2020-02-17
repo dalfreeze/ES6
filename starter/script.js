@@ -46,6 +46,12 @@
 
 // console.log(i); // if initial i and for loop i were defined with var, this console.log would log "5", because that is the last value asigned to the i in the for loop
 
+
+
+
+
+
+
 ////////////////////////////
 // Lecture: Blocks and IIFEs
 
@@ -63,29 +69,60 @@
 
 // console.log(c);
 
+
+
+
+
+
 ////////////////////
 // Lecture: Strings
 
-let firstName = 'John';
-let lastName = 'Smith';
-const yearOfBirth = 1990;
-let d = new Date;
+// let firstName = 'John';
+// let lastName = 'Smith';
+// const yearOfBirth = 1990;
+// let d = new Date;
 
-function calcAge(year) {
-    return (d.getFullYear()) - year;
-};
+// function calcAge(year) {
+//     return (d.getFullYear()) - year;
+// };
+
+// // ES5
+// console.log('This is ' + firstName + ' ' + lastName + '. He was born in ' + yearOfBirth + '. Today he is ' + calcAge(yearOfBirth) + ' years old.')
+
+// // ES6    // Template literals
+// console.log(`This is ${firstName} ${lastName}. He was born in ${yearOfBirth}. Today, he is ${calcAge(yearOfBirth)} years old.`)
+
+// // New String Methods
+// const n = `${firstName} ${lastName}`;
+// console.log(n.startsWith('J')); // returns true because it's checking if the string n starts with a J. Case sensitive.
+// console.log(n.endsWith('th')); // returns true because it's checking if the string n ends with a th. Case sensitive.
+// console.log(n.includes('n Sm')); // returns true because it's checking if the string n includes a n Sm. Case sensitive.
+
+// console.log(`${firstName} `.repeat(5));
+
+
+
+
+
+////////////////////////////
+// Lecture: Arrow Functions
+
+const years = [1990, 1965, 1980, 1937];
 
 // ES5
-console.log('This is ' + firstName + ' ' + lastName + '. He was born in ' + yearOfBirth + '. Today he is ' + calcAge(yearOfBirth) + ' years old.')
+var ages5 = years.map(function(el) {
+    return 2016 - el;
+});
 
-// ES6    // Template literals
-console.log(`This is ${firstName} ${lastName}. He was born in ${yearOfBirth}. Today, he is ${calcAge(yearOfBirth)} years old.`)
+// ES6
+let ages6 = years.map(el => 2016 - el); // with the map callback functions, you have access to the current element, the index, and the whole array
 
-// New String Methods
-const n = `${firstName} ${lastName}`;
-console.log(n.startsWith('J')); // returns true because it's checking if the string n starts with a J. Case sensitive.
-console.log(n.endsWith('th')); // returns true because it's checking if the string n ends with a th. Case sensitive.
-console.log(n.includes('n Sm')); // returns true because it's checking if the string n includes a n Sm. Case sensitive.
+// Arrow function with multiple arguments
+ages6 = years.map((el, i) => `Age element ${i +1}: ${2016-el}.`);
 
-console.log(`${firstName} `.repeat(5));
-
+// Arrow function with multiple lines of code. Return is no longer implicit.
+ages6 = years.map((el, i) => {
+    const now = new Date().getFullYear();
+    const age = now - el;
+    return `Age element ${i +1}: ${age}.`
+});
