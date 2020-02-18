@@ -236,9 +236,71 @@ box6.clickMe();
 
 
 
-function calcAgeRetirement(year) {
-    const age = new Date().getFullYear() - year;
-    return [age, 65 - age];
+// function calcAgeRetirement(year) {
+//     const age = new Date().getFullYear() - year;
+//     return [age, 65 - age];
+// };
+
+// const [age, retirement] = calcAgeRetirement(1990);
+
+
+
+///////////////////
+// Lecture: Arrays
+
+const boxes = document.querySelectorAll('.box');
+
+// ES5
+// var boxesArr5 = Array.prototype.slice.call(boxes);
+// boxesArr5.forEach(function(cur) {
+//     cur.style.backgroundColor = 'dodgerblue';
+// });;
+
+
+// ES6
+const boxesArr6 = Array.from(boxes); // transforms node list to array
+boxesArr6.forEach(cur => cur.style.backgroundColor = 'dodgerblue');
+
+
+// Loops
+// ES5
+// for (var i = 0; i < boxesArr5.length; i++) {
+//     if (boxesArr5[i].className === 'box blue') {
+//         continue; // continues to the next iteration. If you use break here, it would break out of the loop completely once the if statement came up true
+//     }
+
+//     boxesArr5[i].textContent = 'I changed to blue';
+// }
+
+
+// ES6
+// For Of loop
+// Basically a combination of the for and forEach
+for (const cur of boxesArr6) {
+    if (cur.className.includes('blue')) {
+        continue;
+    }
+    cur.textContent = 'I changed to blue';
 };
 
-const [age, retirement] = calcAgeRetirement(1990);
+
+
+// Finding elements in array
+
+// ES5
+// var ages = [12, 17, 8, 21, 14, 11];
+
+// var full = ages.map(function(cur) {
+//     return cur >= 18;
+// });
+// console.log(full);
+
+// console.log(full.indexOf(true));
+// console.log(ages[full.indexOf(true)]); // you have to do all of this just to pull out the number that is >= 18
+
+
+// ES6
+const ages = [12, 17, 8, 21, 14, 11];
+
+console.log(ages.findIndex(cur => cur >= 18));
+console.log(ages.find(cur => cur >=18)); // use this if you don't want to know the index
