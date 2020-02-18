@@ -130,15 +130,84 @@ ages6 = years.map((el, i) => {
 // Arrow functions do not have their own *this* keyword. They have a lexical *this*
 
 // ES5
-var box5 = {
+// var box5 = {
+//     color: 'green',
+//     position: 1,
+//     clickMe: function(){
+//         let self = this; // this is a workaround to avoid 'this' ending up pointing to the window/global object when this method is called as a function
+//         document.querySelector('.green').addEventListener('click', function(){
+//             var str = 'This is box number ' + self.position + ' and it is ' + self.color;
+//             alert(str);
+//         });
+//     }
+// };
+
+// box5.clickMe(); // this is a function call, so 'this' points to the global object
+
+// ES6
+const box6 = {
     color: 'green',
     position: 1,
     clickMe: function(){
-        document.querySelector('.green').addEventListener('click', function(){
+        document.querySelector('.green').addEventListener('click', () => { // use empty parentheses when there are no functions passed in. Arrow function specifically allows the 'this' in here to point to the object regardless of where the method is called
             var str = 'This is box number ' + this.position + ' and it is ' + this.color;
             alert(str);
         });
     }
 };
 
-box5.clickMe();
+// box6.clickMe();
+
+// const box66 = {
+//     color: 'green',
+//     position: 1,
+//     clickMe: () => { // using an arrow function here will change the 'this' to the globa score because this function shares the global scope
+//         document.querySelector('.green').addEventListener('click', () => { // use empty parentheses when there are no functions passed in. Arrow function specifically allows the 'this' in here to point to the object regardless of where the method is called
+//             var str = 'This is box number ' + this.position + ' and it is ' + this.color;
+//             alert(str);
+//         });
+//     }
+// };
+
+box6.clickMe();
+
+// ES5
+// function Person(name) {
+//     this.name = name;
+// };
+
+// Person.prototype.myFriends5 = function(friends) {
+//     var arr = friends.map(function(el) {
+//         return this.name + ' is friends with ' + el;
+//     }.bind(this)); // have to use this method to define this as this
+
+//     console.log(arr);
+// };
+
+// var friends = [
+//     'Bob',
+//     'Jane',
+//     'Mark'
+// ];
+
+// new Person('John').myFriends5(friends);
+
+
+// ES6
+
+function Person(name) {
+    this.name = name;
+};
+
+Person.prototype.myFriends6 = function(friends) {
+    var arr = friends.map(el => `${this.name} is friends with ${el}`);
+    arr.forEach(cur => console.log(cur));
+};
+
+var friends = [
+    'Bob',
+    'Jane',
+    'Mark'
+];
+
+new Person('Mike').myFriends6(friends);
