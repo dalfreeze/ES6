@@ -195,19 +195,50 @@ box6.clickMe();
 
 // ES6
 
-function Person(name) {
-    this.name = name;
+// function Person(name) {
+//     this.name = name;
+// };
+
+// Person.prototype.myFriends6 = function(friends) {
+//     var arr = friends.map(el => `${this.name} is friends with ${el}`);
+//     arr.forEach(cur => console.log(cur));
+// };
+
+// var friends = [
+//     'Bob',
+//     'Jane',
+//     'Mark'
+// ];
+
+// new Person('Mike').myFriends6(friends);
+
+
+
+
+//////////////////////////
+// Lecture: Destructuring
+
+// ES5
+// var john = ['John', 26];
+// var name = john[0];
+// var age = john[1];
+
+
+// ES6
+// const [name, age] = ['John', 26]; // creates a constant name and constant year and stores them as separate variables based on the array
+
+// const obj = {
+//     firstName: 'John',
+//     lastName: 'Smith'
+// };
+
+// const {firstName, lastName} = obj; // destructures the obj and makes firstName and lastName their own const variables
+
+
+
+function calcAgeRetirement(year) {
+    const age = new Date().getFullYear() - year;
+    return [age, 65 - age];
 };
 
-Person.prototype.myFriends6 = function(friends) {
-    var arr = friends.map(el => `${this.name} is friends with ${el}`);
-    arr.forEach(cur => console.log(cur));
-};
-
-var friends = [
-    'Bob',
-    'Jane',
-    'Mark'
-];
-
-new Person('Mike').myFriends6(friends);
+const [age, retirement] = calcAgeRetirement(1990);
