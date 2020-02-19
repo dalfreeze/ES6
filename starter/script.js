@@ -311,26 +311,77 @@
 ////////////////////////////
 // Lecture: Spread Operator
 
-function addFourAges (a, b, c, d) {
-    return a + b + c + d;
-};
+// function addFourAges (a, b, c, d) {
+//     return a + b + c + d;
+// };
 
-let sum1 = addFourAges(18, 30, 12, 21);
+// let sum1 = addFourAges(18, 30, 12, 21);
+
+// // ES5
+// var ages = [18, 30, 12, 21];
+// var sum2 = addFourAges.apply(null, ages); // apply uses the values in the ages array as the arguments in whatever function it is used on. The null is defining the 'this' keyword, but because we're not concerned with it, we set it to null
+
+// // ES6
+// const sum3 = addFourAges(...ages); /// The ... is the spread operator, it spreads the array ages into its separate components
+
+// const familySmith = ['John', 'Jane', 'Mark'];
+// const familyMiller = ['Mary', 'Bob', 'Ann'];
+// const bigFamily = [...familySmith, 'Lily', ...familyMiller];
+
+
+// const h = document.querySelector('h1');
+// const boxes = document.querySelectorAll('.box');
+// const all = [h, ...boxes];
+
+// Array.from(all).forEach(cur => cur.style.color = 'purple');
+
+
+
+
+
+
+////////////////////////////
+// Lecture: Rest Parameters
+
+// // ES5
+// function isFullAge5() {
+//     //console.log(arguments);
+//     let argsArr = Array.prototype.slice.call(arguments);
+
+//     argsArr.forEach(function(cur) {
+//         console.log((2016 - cur) >= 18);
+//     })
+// };
+
+// // isFullAge5(1990, 1999, 1965);
+
+
+// // ES6
+// function isFullAge6(...years){ // the ... rest parameter takes whatever arguments you pass into the function and turns it into an array
+//     years.forEach(cur => console.log((2016 - cur) >= 18))
+// };
+
+// isFullAge6(1990, 1999, 1965);
+
+// Spread operator is used in the function call and rest operator is used in the function declaration to extract and arbitrary number of parameters
+
 
 // ES5
-var ages = [18, 30, 12, 21];
-var sum2 = addFourAges.apply(null, ages); // apply uses the values in the ages array as the arguments in whatever function it is used on. The null is defining the 'this' keyword, but because we're not concerned with it, we set it to null
+function isFullAge5(limit) {
+    //console.log(arguments);
+    let argsArr = Array.prototype.slice.call(arguments, 1); // This allows you to skip the first parameter, limit, and start with the rest of the arguments
+
+    argsArr.forEach(function(cur) {
+        console.log((2016 - cur) >= limit);
+    })
+};
+
+isFullAge5(21, 1990, 1999, 1965);
+
 
 // ES6
-const sum3 = addFourAges(...ages); /// The ... is the spread operator, it spreads the array ages into its separate components
+function isFullAge6(limit, ...years){ // this is all you have to do
+    years.forEach(cur => console.log((2016 - cur) >= limit))
+};
 
-const familySmith = ['John', 'Jane', 'Mark'];
-const familyMiller = ['Mary', 'Bob', 'Ann'];
-const bigFamily = [...familySmith, 'Lily', ...familyMiller];
-
-
-const h = document.querySelector('h1');
-const boxes = document.querySelectorAll('.box');
-const all = [h, ...boxes];
-
-Array.from(all).forEach(cur => cur.style.color = 'purple');
+isFullAge6(16, 1990, 1999, 1965);
