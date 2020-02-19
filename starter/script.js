@@ -107,25 +107,25 @@
 ////////////////////////////
 // Lecture: Arrow Functions
 
-const years = [1990, 1965, 1980, 1937];
+// const years = [1990, 1965, 1980, 1937];
 
-// ES5
-var ages5 = years.map(function(el) {
-    return 2016 - el;
-});
+// // ES5
+// var ages5 = years.map(function(el) {
+//     return 2016 - el;
+// });
 
-// ES6
-let ages6 = years.map(el => 2016 - el); // with the map callback functions, you have access to the current element, the index, and the whole array
+// // ES6
+// let ages6 = years.map(el => 2016 - el); // with the map callback functions, you have access to the current element, the index, and the whole array
 
-// Arrow function with multiple arguments
-ages6 = years.map((el, i) => `Age element ${i +1}: ${2016-el}.`);
+// // Arrow function with multiple arguments
+// ages6 = years.map((el, i) => `Age element ${i +1}: ${2016-el}.`);
 
-// Arrow function with multiple lines of code. Return is no longer implicit.
-ages6 = years.map((el, i) => {
-    const now = new Date().getFullYear();
-    const age = now - el;
-    return `Age element ${i +1}: ${age}.`
-});
+// // Arrow function with multiple lines of code. Return is no longer implicit.
+// ages6 = years.map((el, i) => {
+//     const now = new Date().getFullYear();
+//     const age = now - el;
+//     return `Age element ${i +1}: ${age}.`
+// });
 
 // Arrow functions do not have their own *this* keyword. They have a lexical *this*
 
@@ -144,17 +144,17 @@ ages6 = years.map((el, i) => {
 
 // box5.clickMe(); // this is a function call, so 'this' points to the global object
 
-// ES6
-const box6 = {
-    color: 'green',
-    position: 1,
-    clickMe: function(){
-        document.querySelector('.green').addEventListener('click', () => { // use empty parentheses when there are no functions passed in. Arrow function specifically allows the 'this' in here to point to the object regardless of where the method is called
-            var str = 'This is box number ' + this.position + ' and it is ' + this.color;
-            alert(str);
-        });
-    }
-};
+// // ES6
+// const box6 = {
+//     color: 'green',
+//     position: 1,
+//     clickMe: function(){
+//         document.querySelector('.green').addEventListener('click', () => { // use empty parentheses when there are no functions passed in. Arrow function specifically allows the 'this' in here to point to the object regardless of where the method is called
+//             var str = 'This is box number ' + this.position + ' and it is ' + this.color;
+//             alert(str);
+//         });
+//     }
+// };
 
 // box6.clickMe();
 
@@ -169,7 +169,7 @@ const box6 = {
 //     }
 // };
 
-box6.clickMe();
+// box6.clickMe();
 
 // ES5
 // function Person(name) {
@@ -248,40 +248,40 @@ box6.clickMe();
 ///////////////////
 // Lecture: Arrays
 
-const boxes = document.querySelectorAll('.box');
+// const boxes = document.querySelectorAll('.box');
 
-// ES5
-// var boxesArr5 = Array.prototype.slice.call(boxes);
-// boxesArr5.forEach(function(cur) {
-//     cur.style.backgroundColor = 'dodgerblue';
-// });;
-
-
-// ES6
-const boxesArr6 = Array.from(boxes); // transforms node list to array
-boxesArr6.forEach(cur => cur.style.backgroundColor = 'dodgerblue');
+// // ES5
+// // var boxesArr5 = Array.prototype.slice.call(boxes);
+// // boxesArr5.forEach(function(cur) {
+// //     cur.style.backgroundColor = 'dodgerblue';
+// // });;
 
 
-// Loops
-// ES5
-// for (var i = 0; i < boxesArr5.length; i++) {
-//     if (boxesArr5[i].className === 'box blue') {
-//         continue; // continues to the next iteration. If you use break here, it would break out of the loop completely once the if statement came up true
+// // ES6
+// const boxesArr6 = Array.from(boxes); // transforms node list to array
+// boxesArr6.forEach(cur => cur.style.backgroundColor = 'dodgerblue');
+
+
+// // Loops
+// // ES5
+// // for (var i = 0; i < boxesArr5.length; i++) {
+// //     if (boxesArr5[i].className === 'box blue') {
+// //         continue; // continues to the next iteration. If you use break here, it would break out of the loop completely once the if statement came up true
+// //     }
+
+// //     boxesArr5[i].textContent = 'I changed to blue';
+// // }
+
+
+// // ES6
+// // For Of loop
+// // Basically a combination of the for and forEach
+// for (const cur of boxesArr6) {
+//     if (cur.className.includes('blue')) {
+//         continue;
 //     }
-
-//     boxesArr5[i].textContent = 'I changed to blue';
-// }
-
-
-// ES6
-// For Of loop
-// Basically a combination of the for and forEach
-for (const cur of boxesArr6) {
-    if (cur.className.includes('blue')) {
-        continue;
-    }
-    cur.textContent = 'I changed to blue';
-};
+//     cur.textContent = 'I changed to blue';
+// };
 
 
 
@@ -300,7 +300,37 @@ for (const cur of boxesArr6) {
 
 
 // ES6
-const ages = [12, 17, 8, 21, 14, 11];
+// const ages = [12, 17, 8, 21, 14, 11];
 
-console.log(ages.findIndex(cur => cur >= 18));
-console.log(ages.find(cur => cur >=18)); // use this if you don't want to know the index
+// console.log(ages.findIndex(cur => cur >= 18));
+// console.log(ages.find(cur => cur >=18)); // use this if you don't want to know the index
+
+
+
+
+////////////////////////////
+// Lecture: Spread Operator
+
+function addFourAges (a, b, c, d) {
+    return a + b + c + d;
+};
+
+let sum1 = addFourAges(18, 30, 12, 21);
+
+// ES5
+var ages = [18, 30, 12, 21];
+var sum2 = addFourAges.apply(null, ages); // apply uses the values in the ages array as the arguments in whatever function it is used on. The null is defining the 'this' keyword, but because we're not concerned with it, we set it to null
+
+// ES6
+const sum3 = addFourAges(...ages); /// The ... is the spread operator, it spreads the array ages into its separate components
+
+const familySmith = ['John', 'Jane', 'Mark'];
+const familyMiller = ['Mary', 'Bob', 'Ann'];
+const bigFamily = [...familySmith, 'Lily', ...familyMiller];
+
+
+const h = document.querySelector('h1');
+const boxes = document.querySelectorAll('.box');
+const all = [h, ...boxes];
+
+Array.from(all).forEach(cur => cur.style.color = 'purple');
