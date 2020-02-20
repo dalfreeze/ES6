@@ -366,22 +366,55 @@
 // Spread operator is used in the function call and rest operator is used in the function declaration to extract and arbitrary number of parameters
 
 
-// ES5
-function isFullAge5(limit) {
-    //console.log(arguments);
-    let argsArr = Array.prototype.slice.call(arguments, 1); // This allows you to skip the first parameter, limit, and start with the rest of the arguments
+// // ES5
+// function isFullAge5(limit) {
+//     //console.log(arguments);
+//     let argsArr = Array.prototype.slice.call(arguments, 1); // This allows you to skip the first parameter, limit, and start with the rest of the arguments
 
-    argsArr.forEach(function(cur) {
-        console.log((2016 - cur) >= limit);
-    })
-};
+//     argsArr.forEach(function(cur) {
+//         console.log((2016 - cur) >= limit);
+//     })
+// };
 
-isFullAge5(21, 1990, 1999, 1965);
+// isFullAge5(21, 1990, 1999, 1965);
+
+
+// // ES6
+// function isFullAge6(limit, ...years){ // this is all you have to do
+//     years.forEach(cur => console.log((2016 - cur) >= limit))
+// };
+
+// isFullAge6(16, 1990, 1999, 1965);
+
+
+
+///////////////////////////////
+// Lecture: Default Parameters
+
+// // ES5
+// function SmithPerson(firstName, yearOfBirth, lastName, nationality){
+
+//     lastName === undefined ? lastName = 'Smith': lastName;
+//     nationality === undefined ? nationality = 'American' : nationality;
+
+//     this.firstName = firstName;
+//     this.lastName = lastName;
+//     this.yearOfBirth = yearOfBirth;
+//     this.nationality = nationality;
+// };
+
+// let john = new SmithPerson('John', 1990); // don't have to specify all arguments. Assigns undefined to empty parameters
+
+// let emily = new SmithPerson('Emily', 1983, 'Diaz', 'Spanish');
 
 
 // ES6
-function isFullAge6(limit, ...years){ // this is all you have to do
-    years.forEach(cur => console.log((2016 - cur) >= limit))
+function SmithPerson(firstName, yearOfBirth, lastName = 'Smith', nationality = 'American'){
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.yearOfBirth = yearOfBirth;
+    this.nationality = nationality;
 };
 
-isFullAge6(16, 1990, 1999, 1965);
+let john = new SmithPerson('John', 1990);
+let emily = new SmithPerson('Emily', 1983, 'Diaz', 'Spanish');
