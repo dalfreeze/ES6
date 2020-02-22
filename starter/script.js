@@ -426,34 +426,77 @@
 
 // Map is a key-value data structure
 
-const question = new Map();
-question.set('question', 'What is the official name of the latest major JavaScript version?');
-question.set(1, 'ES5');
-question.set(2, 'ES6');
-question.set(3, 'ES2015');
-question.set(4, 'ES7');
-question.set('correct', 3);
-question.set(true, 'Correct answer :D');
-question.set(false, 'Wrong, please try again!');
+// const question = new Map();
+// question.set('question', 'What is the official name of the latest major JavaScript version?');
+// question.set(1, 'ES5');
+// question.set(2, 'ES6');
+// question.set(3, 'ES2015');
+// question.set(4, 'ES7');
+// question.set('correct', 3);
+// question.set(true, 'Correct answer :D');
+// question.set(false, 'Wrong, please try again!');
 
-// console.log(question.get('question'));
-// console.log(question.size); // 8
+// // console.log(question.get('question'));
+// // console.log(question.size); // 8
 
-// if (question.has(4)) {
-//     //question.delete(4); // pass key as argument
-//     console.log('Answer 4 is here');
+// // if (question.has(4)) {
+// //     //question.delete(4); // pass key as argument
+// //     console.log('Answer 4 is here');
+// // }
+
+// // question.clear();
+
+// // question.forEach((value, key) => console.log(`This is ${key}, and it's set to ${value}`));
+
+// for (let [key, value] of question.entries()) { // the key, value is destructuring
+//     if (typeof key === 'number') {
+//         console.log(`Answer ${key}: ${value}`);
+//     }
 // }
 
-// question.clear();
+// const ans = parseInt(prompt('Writer the correct answer'));
 
-// question.forEach((value, key) => console.log(`This is ${key}, and it's set to ${value}`));
+// console.log(question.get(ans === question.get('correct')));
 
-for (let [key, value] of question.entries()) { // the key, value is destructuring
-    if (typeof key === 'number') {
-        console.log(`Answer ${key}: ${value}`);
+
+
+////////////////////
+// Lecture: Classes
+
+// make it easier to implement inheritance and to create objects based on blueprints (function constructors)
+
+// ES5
+// var Person5 = function(name, yearOfBirth, job) {
+//     this.name = name;
+//     this.yearOfBirth = yearOfBirth;
+//     this.job = job;
+// };
+
+// Person5.prototype.calculateAge = function() {
+//     let age = new Date().getFullYear - this.year;
+//     console.log(age);
+// };
+
+// var john5 = new Person5('John', 1990, 'teacher');
+
+
+// ES6
+class Person6 {
+    constructor (name, yearOfBirth, job) {
+        this.name = name;
+        this.yearOfBirth = yearOfBirth;
+        this.job = job;
+    };
+
+    calculateAge() {
+        let age = new Date().getFullYear() - this.yearOfBirth;
+        console.log(age);
     }
-}
 
-const ans = parseInt(prompt('Writer the correct answer'));
+    static greetin() { // Not inherited by each instance
+        console.log('Hey there!');
+    }
+};
 
-console.log(question.get(ans === question.get('correct')));
+const john6 = new Person6('John', 1990, 'teacher');
+john6.calculateAge();
