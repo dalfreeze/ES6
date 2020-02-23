@@ -149,7 +149,7 @@
 //     color: 'green',
 //     position: 1,
 //     clickMe: function(){
-//         document.querySelector('.green').addEventListener('click', () => { // use empty parentheses when there are no functions passed in. Arrow function specifically allows the 'this' in here to point to the object regardless of where the method is called
+//         document.querySelector('.green').addEventListener('click', () => { // use empty parentheses when there are no arguments passed in. Arrow function specifically allows the 'this' in here to point to the object regardless of where the method is called
 //             var str = 'This is box number ' + this.position + ' and it is ' + this.color;
 //             alert(str);
 //         });
